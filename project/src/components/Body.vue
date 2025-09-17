@@ -1,8 +1,31 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-let selected = ref(null)
+let selected = ref('');
+let usersLi = ref('');
 
+function getUsers() {
+  fetch('https://jsonplaceholder.typicode.com/users')
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    return response.json(); // Parse the response body as JSON
+  })
+  .then(data => {
+    usersLi = data
+   // console.log(users); // Log the parsed JSON data
+  })
+  .catch(error => {
+    console.error('Error fetching data:', error); // Handle any errors during the fetch operation
+  });
+}
+getUsers()
+
+
+
+
+console.log(usersLi.value)
 </script>
 
 
@@ -17,9 +40,10 @@ let selected = ref(null)
       
       <select name="contacts" id="contacts"
       v-model="selected">
-        <option value="one">One</option>
-        <option value="two">Two</option>
-        <option value="three">Three</option>
+        <option disabled value="">Choose User</option>
+        <option>One</option>
+        <option>Two</option>
+        <option>Three</option>
       </select>
     </div>
     </form>
