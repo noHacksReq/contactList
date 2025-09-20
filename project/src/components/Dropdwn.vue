@@ -2,13 +2,17 @@
 import { ref } from 'vue';
 
 let selected = ref('');
-
+const props = defineProps({
+  
+  usersLi: Array
+})
 defineExpose(selected)
 
 </script>
 
 <template>
     <div>
+      
         <form class="dropCont">
     <div >
       <div>
@@ -18,6 +22,9 @@ defineExpose(selected)
       <select name="contacts" id="contacts"
       v-model="selected">
         <option disabled value="">Choose User</option>
+        <option
+        v-for="userName in usersLi"
+        >{{ userName.name }}</option>
         <option>One</option>
         <option>Two</option>
         <option>Three</option>
