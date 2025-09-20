@@ -3,7 +3,9 @@ import { ref, useTemplateRef } from 'vue'
 import Dropdwn from './Dropdwn.vue';
 
 const selectedRef = useTemplateRef('selected');
-let usersLi = ref('');
+
+let usersLi = ref(null);
+//let props = defineProps([]);
 
 function getUsers() {
   fetch('https://jsonplaceholder.typicode.com/users')
@@ -31,7 +33,9 @@ console.log(usersLi.value)
 
 <template ref="selected">
   <div class="bodyCont">
-    <Dropdwn ref="selected"/>
+    <Dropdwn ref="selected"
+    :usersLi="usersLi"
+    />
     <div>
       <h3>Contact Info</h3>
       <p>{{ selectedRef }}</p>
