@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, useTemplateRef } from 'vue'
+import Dropdwn from './Dropdwn.vue';
 
-let selected = ref('');
+const selectedRef = useTemplateRef('selected');
 let usersLi = ref('');
 
 function getUsers() {
@@ -23,33 +24,17 @@ function getUsers() {
 getUsers()
 
 
-
-
 console.log(usersLi.value)
 </script>
 
 
 
-<template>
+<template ref="selected">
   <div class="bodyCont">
-    <form class="dropCont">
-    <div >
-      <div>
-        <label for="contacts">Choose a contact</label>
-      </div>
-      
-      <select name="contacts" id="contacts"
-      v-model="selected">
-        <option disabled value="">Choose User</option>
-        <option>One</option>
-        <option>Two</option>
-        <option>Three</option>
-      </select>
-    </div>
-    </form>
+    <Dropdwn ref="selected"/>
     <div>
       <h3>Contact Info</h3>
-      <p>{{ selected }}</p>
+      <p>{{ selectedRef }}</p>
     </div>
   </div>
 </template>
