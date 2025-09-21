@@ -1,11 +1,17 @@
 <script setup lang="ts">
-import { ref, useTemplateRef } from 'vue'
+import { ref } from 'vue'
 import Dropdwn from './Dropdwn.vue';
 
-const selectedRef = useTemplateRef('selected');
+//ref to recieve value from 'selected' emit in dropdown
+const selectedRec = ref('');
+
+//function to set 'selectedRc'
+const getSelectedVal = (value) => {
+  selectedRec.value = value;
+  
+}
 
 let usersLi = ref(null);
-//let props = defineProps([]);
 
 function getUsers() {
   fetch('https://jsonplaceholder.typicode.com/users')
@@ -17,7 +23,7 @@ function getUsers() {
   })
   .then(data => {
     usersLi = data
-   // console.log(users); // Log the parsed JSON data
+   
   })
   .catch(error => {
     console.error('Error fetching data:', error); // Handle any errors during the fetch operation
@@ -25,20 +31,18 @@ function getUsers() {
 }
 getUsers()
 
-
-console.log(usersLi.value)
 </script>
 
 
 
-<template ref="selected">
+<template ref="selected" >
   <div class="bodyCont">
-    <Dropdwn ref="selected"
+    <Dropdwn @selected="getSelectedVal"
     :usersLi="usersLi"
     />
     <div>
       <h3>Contact Info</h3>
-      <p>{{ selectedRef }}</p>
+      <p>{{ selectedRec }}</p>
     </div>
   </div>
 </template>

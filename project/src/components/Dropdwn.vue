@@ -1,16 +1,26 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-let selected = ref('');
+
 const props = defineProps({
   
   usersLi: Array
 })
-defineExpose(selected)
+
+//define 'selected' emit
+const emit = defineEmits(['selected']);
+
+let selectedUser = ref(null);
+
+function trigger() {
+   
+   emit('selected', selectedUser.value)
+}
 
 </script>
 
 <template>
+
     <div>
       
         <form class="dropCont">
@@ -20,7 +30,8 @@ defineExpose(selected)
       </div>
       
       <select name="contacts" id="contacts"
-      v-model="selected">
+      v-model="selectedUser"
+      @change="trigger">
         <option disabled value="">Choose User</option>
         <option
         v-for="userName in usersLi"
