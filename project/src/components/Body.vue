@@ -2,13 +2,13 @@
 import { ref } from 'vue'
 import Dropdwn from './Dropdwn.vue';
 
-//ref to recieve value from 'selected' emit in dropdown
+let isLoading = ref(true)
 const selectedRec = ref('');
+
 
 //function to set 'selectedRc'
 const getSelectedVal = (value) => {
   selectedRec.value = value;
-  
 }
 
 let usersLi = ref(null);
@@ -23,6 +23,7 @@ function getUsers() {
   })
   .then(data => {
     usersLi = data
+    isLoading.value = false;
    
   })
   .catch(error => {
@@ -37,7 +38,10 @@ getUsers()
 
 <template ref="selected" >
   <div class="bodyCont">
-    <Dropdwn @selected="getSelectedVal"
+    <div v-if="isLoading" 
+      class="loading">LOADING</div>
+    <Dropdwn v-else
+    @selected="getSelectedVal"
     :usersLi="usersLi"
     />
     <div>

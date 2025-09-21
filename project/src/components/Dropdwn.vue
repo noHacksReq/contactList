@@ -1,19 +1,15 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-
+let selectedUser = ref(null);
 const props = defineProps({
-  
   usersLi: Array
 })
 
-//define 'selected' emit
+
 const emit = defineEmits(['selected']);
 
-let selectedUser = ref(null);
-
-function trigger() {
-   
+const trigger = () => {
    emit('selected', selectedUser.value)
 }
 
