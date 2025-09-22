@@ -4,7 +4,7 @@ import { ref } from 'vue';
 let selectedUser = ref(null);
 const props = defineProps({
   usersLi: Array
-})
+});
 
 
 const emit = defineEmits(['selected']);
@@ -32,9 +32,6 @@ const trigger = () => {
         <option
         v-for="userName in usersLi"
         >{{ userName.name }}</option>
-        <option>One</option>
-        <option>Two</option>
-        <option>Three</option>
       </select>
     </div>
     </form>
