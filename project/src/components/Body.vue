@@ -1,17 +1,19 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import Dropdwn from './Dropdwn.vue';
+import ContactCard from './ContactCard.vue';
 
 let isLoading = ref(true)
+let usersLi = ref(null);
 const selectedRec = ref('');
 
-
 //function to set 'selectedRc'
+//in here I have to change selectedRec to an object with
+//all the users info instead of just a selectedRec var with a name
+//then I can pass users info to child components
 const getSelectedVal = (value) => {
   selectedRec.value = value;
 }
-
-let usersLi = ref(null);
 
 function getUsers() {
   fetch('https://jsonplaceholder.typicode.com/users')
@@ -44,10 +46,9 @@ getUsers()
     @selected="getSelectedVal"
     :usersLi="usersLi"
     />
-    <div>
-      <h3>Contact Info</h3>
-      <p>{{ selectedRec }}</p>
-    </div>
+    <ContactCard :usersLi="usersLi"
+    :userName="selectedRec"/>
+    
   </div>
 </template>
 
