@@ -2,15 +2,26 @@
 import { ref } from 'vue';
 
 let selectedUser = ref(null);
+let userIndex = ref()
 const props = defineProps({
-  usersLi: Array
+  usersLi: Array,
+  
 });
 
 
-const emit = defineEmits(['selected']);
+const emit = defineEmits(['selected', 'userIndex']);
 
+//try to pass index from v-for up to body component
+//to get whole objet, not just the name
 const trigger = () => {
-   emit('selected', selectedUser.value)
+  getIndex(event)
+   emit('selected', selectedUser, userIndex)
+   
+}
+
+function getIndex(event) {  
+  userIndex = event.target.selectedIndex - 1;
+  return userIndex 
 }
 
 </script>
@@ -27,10 +38,11 @@ const trigger = () => {
       
       <select name="contacts" id="contacts"
       v-model="selectedUser"
-      @change="trigger">
+      @change="trigger($event)">
         <option disabled value="">Choose User</option>
         <option
-        v-for="userName in usersLi"
+        v-for="(userName, index) in usersLi"
+        
         >{{ userName.name }}</option>
       </select>
     </div>

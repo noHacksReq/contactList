@@ -6,14 +6,19 @@ import ContactCard from './ContactCard.vue';
 let isLoading = ref(true)
 let usersLi = ref(null);
 const selectedRec = ref('');
+const selectedIndex = ref(null);
+let currentUser = ref({});
 
-//function to set 'selectedRc'
-//in here I have to change selectedRec to an object with
-//all the users info instead of just a selectedRec var with a name
-//then I can pass users info to child components
-const getSelectedVal = (value) => {
+
+const getSelectedVal = (value, getIndex) => {
   selectedRec.value = value;
+  selectedIndex.value = getIndex;
+  currentUser.value = usersLi.value[getIndex];
+  
+  return currentUser
 }
+
+
 
 function getUsers() {
   fetch('https://jsonplaceholder.typicode.com/users')
@@ -24,7 +29,7 @@ function getUsers() {
     return response.json(); // Parse the response body as JSON
   })
   .then(data => {
-    usersLi = data
+    usersLi.value = data
     isLoading.value = false;
    
   })
@@ -42,12 +47,17 @@ getUsers()
   <div class="bodyCont">
     <div v-if="isLoading" 
       class="loading">LOADING</div>
-    <Dropdwn v-else
+      <div v-else>
+        <Dropdwn 
     @selected="getSelectedVal"
     :usersLi="usersLi"
     />
-    <ContactCard :usersLi="usersLi"
-    :userName="selectedRec"/>
+    <ContactCard 
+    :selectedUser="currentUser"
+    
+    />
+      </div>
+    
     
   </div>
 </template>
