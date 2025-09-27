@@ -14,8 +14,6 @@ const getSelectedVal = (value, getIndex) => {
   selectedRec.value = value;
   selectedIndex.value = getIndex;
   currentUser.value = usersLi.value[getIndex];
-  
-  return currentUser
 }
 
 
@@ -45,20 +43,11 @@ getUsers()
 
 <template ref="selected" >
   <div class="bodyCont">
-    <div v-if="isLoading" 
-      class="loading">LOADING</div>
+    <div v-if="isLoading" class="loading">LOADING</div>
       <div v-else>
-        <Dropdwn 
-    @selected="getSelectedVal"
-    :usersLi="usersLi"
-    />
-    <ContactCard 
-    :selectedUser="currentUser"
-    
-    />
+        <Dropdwn @selected="getSelectedVal" :usersLi="usersLi"/>
+        <ContactCard :selectedUser="currentUser"/>
       </div>
-    
-    
   </div>
 </template>
 
