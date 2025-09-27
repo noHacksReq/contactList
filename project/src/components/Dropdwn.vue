@@ -11,8 +11,7 @@ const props = defineProps({
 
 const emit = defineEmits(['selected', 'userIndex']);
 
-//try to pass index from v-for up to body component
-//to get whole objet, not just the name
+
 const trigger = () => {
   getIndex(event)
    emit('selected', selectedUser, userIndex)
@@ -27,26 +26,22 @@ function getIndex(event) {
 </script>
 
 <template>
-
-    <div>
-      
-        <form class="dropCont">
-    <div >
-      <div>
-        <label for="contacts">Choose a contact</label>
-      </div>
-      
-      <select name="contacts" id="contacts"
-      v-model="selectedUser"
-      @change="trigger($event)">
-        <option disabled value="">Choose User</option>
-        <option
-        v-for="(userName, index) in usersLi"
-        
-        >{{ userName.name }}</option>
-      </select>
-    </div>
-    </form>
+  <div>
+      <form class="dropCont">
+        <div >
+          <div>
+          <label for="contacts">Choose a contact</label>
+          </div>
+          <select name="contacts" id="contacts"
+          v-model="selectedUser"
+          @change="trigger($event)">
+          <option disabled value="">Choose User</option>
+          <option v-for="(userName, index) in usersLi">
+            {{ userName.name }}
+          </option>
+          </select>
+         </div>
+      </form>
     </div>
 </template>
 

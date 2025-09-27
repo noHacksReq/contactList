@@ -7,8 +7,6 @@ const props = defineProps({
   }
 });
 
-
-
 </script>
 
 <template>
@@ -16,6 +14,7 @@ const props = defineProps({
       <h3>Contact Info</h3>
       <div>
         <h4>{{ selectedUser.name }}</h4>
+        <p>{{ selectedUser.email }}</p>
       </div>  
       
     </div>
