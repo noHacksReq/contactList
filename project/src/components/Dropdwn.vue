@@ -20,6 +20,8 @@ const trigger = () => {
 
 function getIndex(event) {  
   userIndex = event.target.selectedIndex - 1;
+
+  console.log(event.target)
   return userIndex 
 }
 
