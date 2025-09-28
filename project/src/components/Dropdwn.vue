@@ -48,5 +48,7 @@ function getIndex(event) {
 </template>
 
 <style scoped>
-
+.dropCont {
+  margin-bottom: 20px;
+}
 </style>
