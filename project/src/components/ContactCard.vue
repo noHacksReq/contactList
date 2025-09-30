@@ -17,7 +17,8 @@ const props = defineProps({
         <p>Username: {{ selectedUser.username }}</p>
         <p>Email: {{ selectedUser.email }}</p>
         <p>Phone: {{ selectedUser.phone }}</p>
-        <p id="link">Website <a href="{{ selectedUser.website }}" _target="blank">{{ selectedUser.website }}</a></p>
+        <p id="link">Website <a href="{{ selectedUser.website }}" 
+          _target="blank">{{ selectedUser.website }}</a></p>
       </div>  
       
     </div>

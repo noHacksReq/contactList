@@ -3,19 +3,14 @@ import { ref } from 'vue'
 import Dropdwn from './Dropdwn.vue';
 import ContactCard from './ContactCard.vue';
 
-let isLoading = ref(true)
+let isLoading = ref(true);
 let usersLi = ref([]);
-const selectedRec = ref('');
-const selectedIndex = ref(null);
 let currentUser = ref({});
 
 
 const getSelectedVal = (value, getIndex) => {
-  selectedRec.value = value;
-  selectedIndex.value = getIndex;
   usersLi.value.filter((i) => i.id === getIndex ? currentUser.value = i : currentUser.value === null)
 }
-
 
 
 function getUsers() {
