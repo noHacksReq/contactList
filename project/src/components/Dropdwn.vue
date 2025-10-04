@@ -11,12 +11,13 @@ const props = defineProps({
 
 const emit = defineEmits(['selected', 'userIndex']);
 
-const trigger = (event) => {
+const trigger = (event: Event) => {
   getIndex(event)
-  emit('selected', selectedUser, userIndex)
+  emit('selected', userIndex)
 }
 
-function getIndex(event) {  
+function getIndex(event: Event | null) {  
+  
   userIndex = event.target.selectedIndex;  
   return userIndex 
 }
