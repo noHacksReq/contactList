@@ -41,9 +41,14 @@ getUsers()
     <div v-if="isLoading" class="loading">LOADING</div>
       <div v-else>
         <Dropdwn @selected="getSelectedVal" :usersLi="usersLi"/>
+      </div>
+      <div v-if="Object.keys(currentUser).length === 0">
+        <h1>Please select a user</h1>
+      </div>
+      <div v-else>
         <ContactCard :selectedUser="currentUser"/>
       </div>
-  </div>
+    </div>
 </template>
 
 <style scoped>
