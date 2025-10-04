@@ -31,7 +31,7 @@ function getIndex(event: Event | null) {
           <div>
           <label for="contacts">Choose a contact</label>
           </div>
-          <select name="contacts" id="contacts"
+          <select name="contacts" class="contacts"
           v-model="selectedUser"
           @change="trigger($event)">
           <option disabled value="">Choose User</option>

@@ -16,14 +16,14 @@ const props = defineProps({
 </script>
 
 <template>
-    <div id="contactCardCont">
-      <h3 id="cardTitle">Contact Info</h3>
-      <div id="infoCont">
+    <div class="contactCardCont">
+      <h3 class="cardTitle">Contact Info</h3>
+      <div class="infoCont">
         <h4>Name: {{ selectedUser.name }}</h4>
         <p>Username: {{ selectedUser.username }}</p>
         <p>Email: {{ selectedUser.email }}</p>
         <p>Phone: {{ selectedUser.phone }}</p>
-        <p id="link">Website <a href="{{ selectedUser.website }}" 
+        <p class="link">Website <a href="{{ selectedUser.website }}" 
           _target="blank">{{ selectedUser.website }}</a></p>
       </div>  
       
@@ -32,7 +32,7 @@ const props = defineProps({
 
 <style scoped>
 
-#contactCardCont {
+.contactCardCont {
   background-color: #978e8e;
   display: flex;
   flex-direction: column;
@@ -42,22 +42,22 @@ const props = defineProps({
   filter: drop-shadow(2px 4px 6px #7a88b3);
 }
 
-#infoCont {
+.infoCont {
   width: 100%;
   justify-items: flex-start;
 }
 
-#infoCont h4, p {
+.infoCont h4, p {
   width: inherit;
   text-align: left;
   padding-left: 10px;
 }
 
-#cardTitle {
+.cardTitle {
   align-self: center;
 }
 
-#link a {
+.link a {
   font-size: 25px;
   color: #34346a;
 }
