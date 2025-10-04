@@ -8,8 +8,8 @@ let usersLi = ref([]);
 let currentUser = ref({});
 
 
-const getSelectedVal = (value, getIndex) => {
-  usersLi.value.filter((i) => i.id === getIndex ? currentUser.value = i : currentUser.value === null)
+const getSelectedVal = (getIndex: number) => {
+  usersLi.value.filter((i:any ) => i.id === getIndex ? currentUser.value = i : currentUser.value === null)
 }
 
 
