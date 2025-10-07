@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import Dropdwn from './Dropdwn.vue';
 import ContactCard from './ContactCard.vue';
 
@@ -13,8 +13,8 @@ const getSelectedVal = (getIndex: number) => {
 }
 
 
-function getUsers() {
-  fetch('https://jsonplaceholder.typicode.com/users')
+async function getUsers() {
+  await fetch('https://jsonplaceholder.typicode.com/users')
   .then(response => {
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
@@ -29,8 +29,10 @@ function getUsers() {
   .catch(error => {
     console.error('Error fetching data:', error); // Handle any errors during the fetch operation
   });
+  
 }
-getUsers()
+onMounted(() => getUsers());
+
 
 </script>
 
